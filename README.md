@@ -21,16 +21,17 @@ pip install -U groq
 - **Agent Class**: Handles interactions with the `groq` API.
 - **Conversation History**: Stores user and assistant messages for context.
 - **Execution Function**: Calls the API and returns responses.
+- **Tools**: FetchBitcoinPrice & LanguageTranslation
 
 ## Example
 
 ```python
-from groq import Groq
-client = Groq(api_key='your_api_key')
-agent = Agent(client, system="You are a helpful assistant.")
-response = agent("Hello, how can you assist me?")
-print(response)
+loop(query="Tell about current bitcoin price")
+loop(query="Wie hoch ist der aktuelle Bitcoin-Preis")
 ```
+## Limitations
+- **Groq API Handling**: Since Together AI isn't working due to a certification issue on my official laptop, I am using Groq for LLM interactions. My approach is flexible, allowing any LLM to be plugged in with minimal message format changes.
+- **Hardcoded Language Translations**: Since Google Translate APIs are blocked in my system, I have temporarily hardcoded the translation logic. However, this can be easily integrated with any simple translation API in the future.
 
 ## License
 This project is for educational purposes. Use at your own discretion.
