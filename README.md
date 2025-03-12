@@ -22,6 +22,30 @@ pip install -U groq
 - **Conversation History**: Stores user and assistant messages for context.
 - **Execution Function**: Calls the API and returns responses.
 - **Tools**: FetchBitcoinPrice & LanguageTranslation
+## Approach for Prompting
+
+This system operates in a structured loop consisting of four key phases: **Thought, Action, PAUSE, and Observation**, before finally producing an **Answer**.
+
+### 1. Understanding the Question (Thought Phase)
+- The system first **analyzes the query** to determine the necessary action.  
+- If the query is **not in English**, it requires **language translation** before proceeding.  
+- If the query is in **English** and directly asks for Bitcoin’s price, the system proceeds to **fetch the latest price**.  
+
+### 2. Taking Action (Action Phase)
+- Based on the thought process, the system **invokes the appropriate action**:  
+  - **FetchBitcoinPrice** → Fetches the latest BTCUSDT price.  
+  - **LanguageTranslation** → Converts a non-English query into English.  
+- The system then **pauses (PAUSE)** and waits for the action’s result.  
+
+### 3. Receiving Results (Observation Phase)
+- The system receives the **result of the action taken** (e.g., translated query or Bitcoin price).  
+- If necessary, the system continues the loop by **executing another action** (e.g., fetching the Bitcoin price after translation).  
+
+### 4. Generating the Answer (Final Output)
+- Once the required data is obtained, the system **formats and returns the final answer**.  
+- The response follows a structured pattern:  
+  - **Example 1:** `"The current bitcoin price is 6234925."`  
+  - **Example 2:** `"The current bitcoin price is 8934712."`  
 
 ## Example
 
